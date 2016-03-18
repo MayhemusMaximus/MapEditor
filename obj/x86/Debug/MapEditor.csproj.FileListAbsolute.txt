@@ -1,0 +1,7 @@
+c:\users\rmatton\documents\visual studio 2013\Projects\WindowsGame1\MapEditor\MapEditor\bin\x86\Debug\MapEditor.exe
+c:\users\rmatton\documents\visual studio 2013\Projects\WindowsGame1\MapEditor\MapEditor\bin\x86\Debug\MapEditor.pdb
+c:\users\rmatton\documents\visual studio 2013\Projects\WindowsGame1\MapEditor\MapEditor\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\rmatton\documents\visual studio 2013\Projects\WindowsGame1\MapEditor\MapEditor\obj\x86\Debug\MapEditor.exe
+c:\users\rmatton\documents\visual studio 2013\Projects\WindowsGame1\MapEditor\MapEditor\obj\x86\Debug\MapEditor.pdb
+c:\users\rmatton\documents\visual studio 2013\Projects\WindowsGame1\MapEditor\MapEditor\bin\x86\Debug\Content\Arial_8.xnb
+c:\users\rmatton\documents\visual studio 2013\Projects\WindowsGame1\MapEditor\MapEditor\obj\x86\Debug\MapEditor.csprojResolveAssemblyReference.cache
