@@ -36,11 +36,11 @@ namespace MapEditor
 
         Controls.Button button;
 
-        //tabControl Test
-        Controls.TabControl tabControl;
+        ////tabControl Test
+        //Controls.TabControl tabControl;
 
-        ////listbox Test
-        //Controls.ListBox listbox;
+        //listbox Test
+        Controls.ListBox listbox;
 
         public Editor()
         {
@@ -74,32 +74,32 @@ namespace MapEditor
 
             #region TabControl Test
 
-            tabControl = new Controls.TabControl();
+            //tabControl = new Controls.TabControl();
 
-            Controls.Button a = new Controls.Button();
-            a.Bounds = new Rectangle(30, 30, 40, 20);
-            Controls.Label labela = new Controls.Label(a.Bounds, Statics.Arial_8, "Button A", Color.Red);
-            a.ChildControl = labela;
-            tabControl.tabs[0].Controls.Add(a);
+            //Controls.Button a = new Controls.Button();
+            //a.Bounds = new Rectangle(30, 30, 40, 20);
+            //Controls.Label labela = new Controls.Label(a.Bounds, Statics.Arial_8, "Button A", Color.Red);
+            //a.ChildControl = labela;
+            //tabControl.tabs[0].Controls.Add(a);
 
-            Controls.Button b = new Controls.Button();
-            b.Bounds = new Rectangle(40, 40, 40, 20);
-            Controls.Image image = new Controls.Image(Statics.SimpleTexture, b.Bounds, Color.Green);
-            b.ChildControl = image;
-            tabControl.tabs[1].Controls.Add(b);
+            //Controls.Button b = new Controls.Button();
+            //b.Bounds = new Rectangle(40, 40, 40, 20);
+            //Controls.Image image = new Controls.Image(Statics.SimpleTexture, b.Bounds, Color.Green);
+            //b.ChildControl = image;
+            //tabControl.tabs[1].Controls.Add(b);
 
             #endregion TabControl Test
 
             #region ListBox Test
 
-            ////Create Listbox
-            //listbox = new Controls.ListBox();
-            ////formatting
-            //listbox.Bounds = new Rectangle(100, 100, 200, 200);
+            //Create Listbox
+            listbox = new Controls.ListBox();
+            //formatting
+            listbox.Bounds = new Rectangle(100, 100, 200, 200);
 
-            ////Adding Items
-            //listbox.AddNewListBoxItem(Statics.SimpleTexture, "Listbox Item 1", Color.Blue);
-            //listbox.AddNewListBoxItem(Statics.SimpleTexture, "Listbox Item 2", Color.Red);
+            //Adding Items
+            listbox.AddNewListBoxItem(Statics.SimpleTexture, "Listbox Item 1", Color.Blue);
+            listbox.AddNewListBoxItem(Statics.SimpleTexture, "Listbox Item 2", Color.Red);
 
             #endregion ListBox Test
 
@@ -133,11 +133,11 @@ namespace MapEditor
             //button Test
             //button.Update(gameTime);
 
-            //tabControl Test
-            tabControl.Update(gameTime);
+            ////tabControl Test
+            //tabControl.Update(gameTime);
 
-            ////listbox Test
-            //listbox.Update(gameTime);
+            //listbox Test
+            listbox.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -161,11 +161,11 @@ namespace MapEditor
 
             Statics.SpriteBatch.Begin();
 
-            // tabControl Test
-            tabControl.Draw(gameTime);
+            //// tabControl Test
+            //tabControl.Draw(gameTime);
 
-            ////listbox Test
-            //listbox.Draw(gameTime);
+            //listbox Test
+            listbox.Draw(gameTime);
 
             Statics.SpriteBatch.End();
 
