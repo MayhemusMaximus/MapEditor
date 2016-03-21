@@ -74,10 +74,15 @@
   <ItemGroup>
     <Compile Include="Controls\Button.cs" />
     <Compile Include="Controls\Control.cs" />
+    <Compile Include="Controls\EventArgs\LeftMouseButtonPressedEventArgs.cs" />
+    <Compile Include="Controls\EventArgs\LeftMousebuttonReleasedEventArgs.cs" />
+    <Compile Include="Controls\EventArgs\SelectedListBoxItemChangedEventArgs.cs" />
+    <Compile Include="Controls\EventArgs\SliderValueChangedEventArgs.cs" />
     <Compile Include="Controls\Image.cs" />
     <Compile Include="Controls\Label.cs" />
     <Compile Include="Controls\ListBox.cs" />
     <Compile Include="Controls\ListBoxItem.cs" />
+    <Compile Include="Controls\Slider.cs" />
     <Compile Include="Controls\Tab.cs" />
     <Compile Include="Controls\TabControl.cs" />
     <Compile Include="Controls\Tooltip.cs" />

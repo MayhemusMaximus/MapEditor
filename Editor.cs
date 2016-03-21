@@ -14,8 +14,14 @@ using Controls = MapEditor.Controls;
 // Components
 // TODO: Write Listbox Control
 // TODO: Write Drop Down Control
-// TODO: Write Scrollbar Control
+// TODO: Write Scrollbar Control - A type of slider...
 // TODO: Write a Tooltip Control
+// TODO: Write a Slider Control
+// TODO: Write a Progress Bar control
+// TODO: Write a Knob
+// TODO: Write a Toggle
+// TODO: Write a Throttle
+// TODO: Write a Text Box
 
 // TODO: Add Menu Bar
 // TODO: Add Menu Items
@@ -40,7 +46,10 @@ namespace MapEditor
         //Controls.TabControl tabControl;
 
         //listbox Test
-        Controls.ListBox listbox;
+        //Controls.ListBox listbox;
+
+        //Slider Test
+        Controls.Slider slider;
 
         public Editor()
         {
@@ -92,18 +101,42 @@ namespace MapEditor
 
             #region ListBox Test
 
-            //Create Listbox
-            listbox = new Controls.ListBox();
-            //formatting
-            listbox.Bounds = new Rectangle(100, 100, 200, 200);
+            ////Create Listbox
+            //listbox = new Controls.ListBox();
+            ////formatting
+            //listbox.Bounds = new Rectangle(100, 100, 200, 200);
 
-            //Adding Items
-            listbox.AddNewListBoxItem(Statics.SimpleTexture, "Listbox Item 1", Color.Blue);
-            listbox.AddNewListBoxItem(Statics.SimpleTexture, "Listbox Item 2", Color.Red);
+            ////Adding Items
+            //listbox.AddNewListBoxItem(Statics.SimpleTexture, "Listbox Item 1");
+            //listbox.AddNewListBoxItem(Statics.SimpleTexture, "Listbox Item 2");
+
+            //listbox.SelectedItemChanged += listbox_SelectedItemChanged;
 
             #endregion ListBox Test
 
+            #region Slider Test
+
+            slider = new Controls.Slider();
+            slider.sliderValueChanged += slider_sliderValueChanged;
+
+            #endregion Slider Test
+
         }
+
+        //Testing Event
+        string selectedItem = string.Empty;
+        void listbox_SelectedItemChanged(object sender, Controls.EventArgs.SelectedListBoxItemChangedEventArgs e)
+        {
+            selectedItem = (e.NewlySelectedListBoxItems[0].Label.Text);
+        }
+
+        //Testing Slider
+        string sliderValue = string.Empty;
+        private void slider_sliderValueChanged(object sender, Controls.EventArgs.SliderValueChangedEventArgs e)
+        {
+            sliderValue = e.Value.ToString();
+        }
+        
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -137,7 +170,10 @@ namespace MapEditor
             //tabControl.Update(gameTime);
 
             //listbox Test
-            listbox.Update(gameTime);
+            //listbox.Update(gameTime);
+
+            //Slider Test
+            slider.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -165,7 +201,12 @@ namespace MapEditor
             //tabControl.Draw(gameTime);
 
             //listbox Test
-            listbox.Draw(gameTime);
+            //listbox.Draw(gameTime);
+
+            //Slider Test
+            slider.Draw(gameTime);
+
+            Statics.SpriteBatch.DrawString(Statics.Arial_8, sliderValue, new Vector2(10, 300), Color.White);
 
             Statics.SpriteBatch.End();
 

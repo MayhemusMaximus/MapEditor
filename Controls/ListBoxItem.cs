@@ -31,17 +31,24 @@ namespace MapEditor.Controls
 
             this.ToolTipEnabled = false;
             this.ToolTip = new Tooltip();
+
+            SelectedColor = Color.Blue;
+            UnselectedColor = Color.White;
         }
 
-        public ListBoxItem(Image image, Label label) : base()
+        public ListBoxItem(Image image, Label label, Rectangle bounds) : base()
         {
             base.child = this;
+            base.Bounds = bounds;
 
             this.Image = image;
             this.Label = label;
 
             this.ToolTipEnabled = false;
             this.ToolTip = new Tooltip();
+
+            SelectedColor = Color.Blue;
+            UnselectedColor = Color.White;
         }
 
         #endregion Constructors
@@ -59,11 +66,21 @@ namespace MapEditor.Controls
             if (this.IsSelected)
                 drawColor = this.SelectedColor;
             Statics.SpriteBatch.Draw(Statics.SimpleTexture, base.Bounds, drawColor);
+            //Statics.SpriteBatch.Draw(Statics.SimpleTexture, base.Bounds, Color.Green);
 
             this.Image.Draw(gameTime);
             this.Label.Draw(gameTime);
         }
 
         #endregion XNA Methods
+
+
+        //public event Clicked clicked;
+
+        //protected override void OnClicked(EventArgs e)
+        //{
+        //    if (clicked != null)
+        //        clicked(this.child, e);
+        //}
     }
 }

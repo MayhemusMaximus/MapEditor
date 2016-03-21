@@ -64,7 +64,7 @@ namespace MapEditor.Controls
             tab.tabClicked += tab_tabClicked;
         }
 
-        void tab_tabClicked(object sender, EventArgs e)
+        void tab_tabClicked(object sender, System.EventArgs e)
         {
             foreach(Tab tab in tabs)
             {

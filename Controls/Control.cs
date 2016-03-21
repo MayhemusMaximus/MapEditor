@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+// TODO: Create EventArgs Classes for Each Event.
+
 namespace MapEditor.Controls
 {
     public class Control
@@ -39,15 +41,18 @@ namespace MapEditor.Controls
         public Boolean ToolTipEnabled { get; set; }
         public Tooltip ToolTip { get; set; }
 
+        // TODO: Implement Rotation in Draw Methods
+        public double Rotation { get; set; }
+
         #endregion Properties
 
         #region Events
 
         #region MouseEnter
 
-        public delegate void MouseEnter(object sender, EventArgs e);
+        public delegate void MouseEnter(object sender, System.EventArgs e);
         public event MouseEnter mouseEnter;
-        public virtual void OnMouseEnter(EventArgs e)
+        public virtual void OnMouseEnter(System.EventArgs e)
         {
             if (mouseEnter != null)
                 mouseEnter(this.child, e);
@@ -57,9 +62,9 @@ namespace MapEditor.Controls
 
         #region MouseOver
 
-        public delegate void MouseOver(object sender, EventArgs e);
+        public delegate void MouseOver(object sender, System.EventArgs e);
         public event MouseOver mouseOver;
-        public virtual void OnMouseOver(EventArgs e)
+        public virtual void OnMouseOver(System.EventArgs e)
         {
             if (mouseOver != null)
                 mouseOver(this.child, e);
@@ -69,9 +74,9 @@ namespace MapEditor.Controls
 
         #region MouseLeave
 
-        public delegate void MouseLeave(object sender, EventArgs e);
+        public delegate void MouseLeave(object sender, System.EventArgs e);
         public event MouseLeave mouseLeave;
-        public virtual void OnMouseLeave(EventArgs e)
+        protected virtual void OnMouseLeave(System.EventArgs e)
         {
             if (mouseLeave != null)
                 mouseLeave(this.child, e);
@@ -81,13 +86,39 @@ namespace MapEditor.Controls
 
         #region Click
 
-        public delegate void Clicked(object sender, EventArgs e);
-        public event Clicked clicked;
-        public virtual void OnClicked(EventArgs e)
+        public delegate void Released(object sender, EventArgs.LeftMousebuttonReleasedEventArgs e);
+        public event Released leftMouseButtonReleased;
+        protected virtual void OnClicked(EventArgs.LeftMousebuttonReleasedEventArgs e)
         {
-            if (clicked != null)
-                clicked(this.child, e);
+            if (leftMouseButtonReleased != null)
+                leftMouseButtonReleased(this.child, e);
         }
+
+        #region LeftMouseButtonPressed
+
+        public delegate void LeftMouseButtonPressed(object sender, EventArgs.LeftMouseButtonPressedEventArgs e);
+        public event LeftMouseButtonPressed leftMousebuttonPressed;
+        protected virtual void OnLeftMouseButtonPressed(EventArgs.LeftMouseButtonPressedEventArgs e)
+        {
+            if (leftMousebuttonPressed != null)
+                leftMousebuttonPressed(this.child, e);
+        }
+
+        #endregion LeftMouseButtonPressed
+
+        #region RightMouseButtonReleased
+
+        public delegate void RightMouseButtonRelease(object sender, EventArgs.LeftMousebuttonReleasedEventArgs e);
+        public event RightMouseButtonRelease rightMouseButtonReleased;
+        protected virtual void OnRightMouseButtonReleased(EventArgs.LeftMousebuttonReleasedEventArgs e)
+        {
+            if (rightMouseButtonReleased != null)
+            {
+                rightMouseButtonReleased(this.child, e);
+            }
+        }
+
+        #endregion RightMouseButtonReleased
 
         #endregion Click
 
@@ -127,7 +158,7 @@ namespace MapEditor.Controls
 
             if (!mouseWasOver && mouseIsOver)
             {
-                OnMouseEnter(EventArgs.Empty);
+                OnMouseEnter(System.EventArgs.Empty);
 
                 if (this.ToolTipEnabled)
                     this.ToolTip.Active = true;
@@ -136,13 +167,13 @@ namespace MapEditor.Controls
 
             if (mouseWasOver && mouseIsOver)
             {
-                OnMouseOver(EventArgs.Empty);
+                OnMouseOver(System.EventArgs.Empty);
                 return;
             }
 
             if (mouseWasOver && !mouseIsOver)
             {
-                OnMouseLeave(EventArgs.Empty);
+                OnMouseLeave(System.EventArgs.Empty);
 
                 if (ToolTipEnabled)
                     this.ToolTip.Active = false;
@@ -154,9 +185,13 @@ namespace MapEditor.Controls
         {
             if (mouseIsOver)
             {
+                if (Statics.PreviousMouseState.LeftButton == ButtonState.Released
+                    && Statics.CurrentMouseState.LeftButton == ButtonState.Pressed)
+                    OnLeftMouseButtonPressed(new EventArgs.LeftMouseButtonPressedEventArgs());
+
                 if(Statics.PreviousMouseState.LeftButton == ButtonState.Pressed
                     && Statics.CurrentMouseState.LeftButton == ButtonState.Released)
-                    OnClicked(EventArgs.Empty);
+                    OnClicked(new EventArgs.LeftMousebuttonReleasedEventArgs());
             }
         }
 

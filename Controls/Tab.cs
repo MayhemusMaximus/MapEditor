@@ -23,7 +23,7 @@ namespace MapEditor.Controls
 
         #region Events
 
-        public delegate void TabClicked(object sender, EventArgs e);
+        public delegate void TabClicked(object sender, System.EventArgs e);
         public event TabClicked tabClicked;
 
         #endregion Events
@@ -39,13 +39,13 @@ namespace MapEditor.Controls
 
             IsActive = false;
 
-            Button.clicked += Button_clicked;
+            Button.leftMouseButtonReleased += Button_released;
         }
 
-        void Button_clicked(object sender, EventArgs e)
+        void Button_released(object sender,  EventArgs.LeftMousebuttonReleasedEventArgs e)
         {
             if (tabClicked != null)
-                tabClicked(this, EventArgs.Empty);
+                tabClicked(this, System.EventArgs.Empty);
         }
 
         #endregion Constructors

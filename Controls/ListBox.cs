@@ -17,7 +17,32 @@ namespace MapEditor.Controls
         public int ItemHeight { get; set; }
         public int ItemPadding { get; set; }
 
+        public ListBoxItem getSelectedListBoxItem
+        {
+            get
+            {
+                foreach (ListBoxItem listBoxItem in ListBoxItems)
+                {
+                    if (listBoxItem.IsSelected)
+                        return listBoxItem;
+                }
+                return null;
+            }
+        }
+
         #endregion Properties
+
+        #region Events
+
+        public delegate void selectedItemChanged(object sender, EventArgs.SelectedListBoxItemChangedEventArgs e);
+        public event selectedItemChanged SelectedItemChanged;
+        protected virtual void OnSelectedItemChanged(EventArgs.SelectedListBoxItemChangedEventArgs e)
+        {
+            if (SelectedItemChanged != null)
+                SelectedItemChanged(this, e);
+        }
+
+        #endregion Events
 
         #region Constructors
 
@@ -37,6 +62,10 @@ namespace MapEditor.Controls
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             base.Update(gameTime);
+            foreach (ListBoxItem listBoxItem in ListBoxItems)
+            {
+                listBoxItem.Update(gameTime);
+            }
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
@@ -55,7 +84,7 @@ namespace MapEditor.Controls
 
         #region Helper Methods
 
-        public void AddNewListBoxItem(Texture2D texture, string text, Color imageColor)
+        public void AddNewListBoxItem(Texture2D texture, string text)
         {
             int index = ListBoxItems.Count();
 
@@ -63,8 +92,7 @@ namespace MapEditor.Controls
             int imageY = base.Bounds.Y + this.ItemPadding + (index * this.ItemHeight);
             int imageWidth = this.ItemHeight - this.ItemPadding;
             Rectangle imageBounds = new Rectangle(imageX, imageY, imageWidth, imageWidth);
-            //TODO: Change the image Color back to White and Remove the argument
-            Image image = new Image(texture, imageBounds, imageColor);
+            Image image = new Image(texture, imageBounds, Color.White);
 
             int parentX = imageX + this.ItemPadding;
             int parentY = imageY;
@@ -73,23 +101,37 @@ namespace MapEditor.Controls
             Rectangle parentBounds = new Rectangle(parentX, parentY, labelWidth, labelHeight);
             Label label = new Label(parentBounds, Statics.Arial_8, text, Color.Black);
 
-            ListBoxItem listBoxItem = new ListBoxItem(image, label);
+            int itemX = this.Bounds.X;
+            int itemY = this.Bounds.Y + (this.ItemHeight * index);
+            int itemWidth = this.Bounds.Width;
+            int itemHeight = this.ItemHeight;
+            Rectangle listBoxItemBounds = new Rectangle(itemX,itemY,itemWidth,ItemHeight);
+            ListBoxItem listBoxItem = new ListBoxItem(image, label, listBoxItemBounds);
 
-            listBoxItem.clicked += listBoxItem_clicked;
+            listBoxItem.leftMouseButtonReleased += listBoxItem_clicked;
 
             this.ListBoxItems.Add(listBoxItem);
 
         }
 
-        void listBoxItem_clicked(object sender, EventArgs e)
+        private void listBoxItem_clicked(object sender, EventArgs.LeftMousebuttonReleasedEventArgs e)
         {
-            foreach(ListBoxItem listBoxItem in ListBoxItems)
+            List<ListBoxItem> previouslySelectedItems = new List<ListBoxItem>();
+            foreach (ListBoxItem listBoxItem in ListBoxItems)
             {
                 if (listBoxItem.IsSelected)
+                {
+                    previouslySelectedItems.Add(listBoxItem);
                     listBoxItem.IsSelected = false;
+                }
             }
 
+            List<ListBoxItem> newlySelectedItems = new List<ListBoxItem>();
+            newlySelectedItems.Add((ListBoxItem)sender);
             ((ListBoxItem)sender).IsSelected = true;
+
+
+            OnSelectedItemChanged(new EventArgs.SelectedListBoxItemChangedEventArgs(previouslySelectedItems, newlySelectedItems));
         }
 
         #endregion Helper Methods

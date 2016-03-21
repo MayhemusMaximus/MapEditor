@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapEditor", "MapEditor.csproj", "{47CD1ACE-ED9F-462D-89C0-E314CB10297E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapEditorContent", "..\MapEditorContent\MapEditorContent.contentproj", "{2D52C266-2FAF-4B7A-BBFC-2CFA82947109}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47CD1ACE-ED9F-462D-89C0-E314CB10297E}.Debug|x86.ActiveCfg = Debug|x86
+		{47CD1ACE-ED9F-462D-89C0-E314CB10297E}.Debug|x86.Build.0 = Debug|x86
+		{47CD1ACE-ED9F-462D-89C0-E314CB10297E}.Release|x86.ActiveCfg = Release|x86
+		{47CD1ACE-ED9F-462D-89C0-E314CB10297E}.Release|x86.Build.0 = Release|x86
+		{2D52C266-2FAF-4B7A-BBFC-2CFA82947109}.Debug|x86.ActiveCfg = Debug|x86
+		{2D52C266-2FAF-4B7A-BBFC-2CFA82947109}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
