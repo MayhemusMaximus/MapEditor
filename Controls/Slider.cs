@@ -121,8 +121,10 @@ namespace MapEditor.Controls
             }
 
             if (mousePoint.Y > base.Bounds.Bottom - Padding - (Knob.Size.Y / 2))
+            {
                 OnSliderValueChanged(new EventArgs.SliderValueChangedEventArgs(Value));
                 Value = MaxValue;
+            }
         }
 
         #endregion Helper Methods
